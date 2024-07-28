@@ -1,0 +1,2616 @@
+/* -------------------------------------------
+
+preloader
+
+------------------------------------------- */
+.Jawad-preloader {
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: $dark;
+
+    & .Jawad-preloader-animation {
+        opacity: 0;
+        position: relative;
+        height: 100vh;
+        color: $light;
+
+        & .Jawad-pos-abs {
+            position: absolute;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            & p {
+                opacity: 0;
+                margin-right: 15px;
+            }
+
+            @media screen and (max-width: 992px) {
+                flex-direction: column;
+
+                & p {
+                    margin-right: 0;
+                    margin-bottom: 10px;
+                }
+            }
+
+            & .Jawad-reveal-frame {
+                position: relative;
+                padding: 0 30px;
+
+                & .Jawad-reveal-box {
+                    z-index: 4;
+                    position: absolute;
+                    opacity: 0;
+                    height: 100%;
+                    background-color: $accent;
+                }
+            }
+        }
+    }
+
+    &.Jawad-hidden {
+        pointer-events: none;
+    }
+}
+
+/* -------------------------------------------
+
+cursor
+
+------------------------------------------- */
+.Jawad-ball {
+    width: 20px;
+    height: 20px;
+    position: fixed;
+    z-index: 10;
+    background-color: $dark;
+    border-radius: 50%;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: .1;
+
+    & .Jawad-icon-1 {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        transform: scale(0);
+
+        & svg {
+            fill: $lt-90;
+        }
+    }
+
+    & .Jawad-more-text,
+    & .Jawad-choose-text {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        display: block;
+        color: $lt-90;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transform: scale(0);
+    }
+
+    &.Jawad-accent {
+        & .Jawad-icon-1 {
+            & svg {
+                fill: $dark;
+            }
+        }
+
+        & .Jawad-more-text,
+        & .Jawad-choose-text {
+            color: $dark;
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        display: none;
+    }
+}
+
+/* -------------------------------------------
+
+hidden elements
+
+------------------------------------------- */
+
+.Jawad-hidden-elements {
+
+    & .Jawad-dodecahedron,
+    & .Jawad-lines,
+    & .Jawad-arrow {
+        display: none;
+    }
+}
+
+/* -------------------------------------------
+
+scrollbar
+
+------------------------------------------- */
+::-webkit-scrollbar {
+    display: none;
+}
+
+.Jawad-progress-track {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background-color: $dark;
+
+    & .Jawad-progress {
+        width: 4px;
+        height: 0;
+        background-color: $accent;
+    }
+
+    @media screen and (max-width: 992px) {
+        display: none;
+    }
+}
+
+/* -------------------------------------------
+
+frame
+
+------------------------------------------- */
+
+.Jawad-logo {
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 100%;
+
+    @media screen and (max-width: 992px) {
+        font-size: 36px;
+    }
+}
+
+.Jawad-frame {
+    padding: 50px 60px 60px 60px;
+    position: fixed;
+    z-index: 2;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+
+    @media screen and (max-width: 1200px) {
+        padding: 30px;
+    }
+
+    @media screen and (max-width: 1200px) {
+        padding: 0;
+        z-index: 999;
+        height: 90px;
+    }
+
+    & .Jawad-frame-top {
+        @media screen and (max-width: 1200px) {
+            height: 90px;
+            background-color: $dt-95;
+            border-bottom: solid 1px $lt-10;
+            padding: 0 30px;
+            backdrop-filter: blur(8px);
+
+            & .Jawad-logo {
+                color: $light;
+            }
+
+            & .Jawad-menu-btn {
+
+                & span,
+                & span:after,
+                & span:before {
+                    background: $light;
+                }
+            }
+
+        }
+    }
+
+    & .Jawad-frame-bottom {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        @media screen and (max-width: 1200px) {
+            display: none;
+        }
+
+        & .Jawad-current-page {
+            pointer-events: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 12px;
+            width: 300px;
+            color: $dark;
+            transform: rotate(-90deg) translateX(138px) translateY(-138px);
+        }
+
+        & .Jawad-back-to-top {
+            width: 300px;
+            transform: rotate(-90deg) translateX(130px) translateY(130px);
+            pointer-events: all;
+        }
+    }
+}
+
+.Jawad-frame-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & .Jawad-logo {
+        pointer-events: all;
+        color: $dark;
+    }
+}
+
+/* -------------------------------------------
+
+menu button
+
+------------------------------------------- */
+.Jawad-menu-btn {
+    pointer-events: all;
+    height: 28px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: $t-md;
+
+    @media screen and (max-width: 992px) {
+        transform: scale(0.85);
+    }
+
+
+    & span,
+    & span:after,
+    & span:before {
+        content: "";
+        display: block;
+        width: 28px;
+        height: 2.5px;
+        background: $dark;
+        backface-visibility: hidden;
+        transition: inherit;
+    }
+
+    & span {
+        position: relative;
+
+        &:after,
+        &:before {
+            position: absolute;
+        }
+
+        &:before {
+            top: -9px;
+        }
+
+        &:after {
+            width: 18px;
+            top: 9px;
+        }
+    }
+
+    &.Jawad-active {
+        & span {
+            transform: rotate(45deg);
+
+            &:before {
+                transform: translate(0px, 9px) rotate(-90deg);
+            }
+
+            &:after {
+                opacity: 0;
+                width: 24px;
+                transform: translate(0px, -9px) rotate(-90deg);
+            }
+        }
+    }
+}
+
+/* -------------------------------------------
+
+menu
+
+------------------------------------------- */
+.Jawad-menu-frame {
+    position: fixed;
+    z-index: 9;
+    width: 100%;
+    height: 100vh;
+    background-color: $dark;
+    opacity: 0;
+    pointer-events: none;
+    transition: $t-md;
+
+    & .container {
+        pointer-events: none;
+    }
+
+    & .Jawad-frame-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 50px 60px;
+
+        @media screen and (max-width: 1200px) {
+            display: none;
+        }
+
+        & .Jawad-logo {
+            color: $light;
+        }
+
+        & .Jawad-menu-btn {
+
+            & span,
+            & span:after,
+            & span:before {
+                background-color: $light;
+            }
+        }
+    }
+
+    & .Jawad-main-menu {
+        transform: translateX(-30px);
+        opacity: 0;
+        transition: $t-md;
+
+        @media screen and (max-width: 1200px) {
+            transform: translateY(30px);
+        }
+    }
+
+    & .Jawad-menu-right-frame {
+        padding-left: 60px;
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: flex-end;
+        border-left: solid 1px $lt-10;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: $t-md;
+
+        & .Jawad-menu-right {
+            padding-bottom: 60px;
+        }
+
+        & .Jawad-animation-in {
+            position: absolute;
+            top: -320px;
+            right: 0;
+            opacity: 0;
+            transform: translateY(-60px);
+            transition: $t-md;
+        }
+
+        @media screen and (max-width: 1200px) {
+            display: none;
+        }
+
+        @media screen and (max-height: 800px) {
+            display: none;
+        }
+    }
+
+    &.Jawad-active {
+        opacity: 1;
+        pointer-events: all;
+
+        & .container {
+            pointer-events: all;
+        }
+
+        & .Jawad-main-menu {
+            transform: translateX(0);
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: .4s;
+        }
+
+        & .Jawad-menu-right-frame {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: .6s;
+
+            & .Jawad-animation-in {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: .8s;
+            }
+        }
+    }
+}
+
+.Jawad-menu-list {
+    & li {
+        list-style-type: none;
+        margin-bottom: 15px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        & a {
+            display: block;
+            transition: $t-sm;
+
+            &:hover {
+                transform: translateX(5px);
+                color: $light;
+            }
+        }
+    }
+
+    &.Jawad-hori-list {
+        display: flex;
+
+        & li {
+            margin-bottom: 0;
+            margin-right: 30px;
+        }
+    }
+
+    &.Jawad-dark {
+        & li {
+            & a {
+                color: $dark;
+            }
+        }
+    }
+}
+
+
+.Jawad-main-menu {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+    ul {
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: 40px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            a {
+                position: relative;
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+                color: $lt-80;
+                font-size: $h4 + 6px;
+                transition: $t-md;
+
+                @media screen and (max-width: 992px) {
+                    font-size: $h5 + 6px;
+                }
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: $lt-40;
+                    transform: scale(0);
+                    transition: $t-md;
+                }
+
+                &:hover {
+                    color: $light;
+                }
+
+                &.Jawad-active {
+                    padding-left: 25px;
+
+                    &:before {
+                        transform: scale(1);
+                        background-color: $accent;
+                    }
+                }
+            }
+
+            &.Jawad-active {
+                & > a {
+                    color: $accent;
+
+                    &:hover {
+                        color: $accent !important;
+                        filter: brightness(110%);
+                    }
+                }
+            }
+
+            &.Jawad-has-children {
+                & > a {
+                    &:hover {
+                        color: $light;
+                        padding-left: 25px;
+
+                        &:before {
+                            transform: scale(1);
+                        }
+                    }
+                }
+
+                ul {
+                    padding-left: 25px;
+                    overflow: hidden;
+                    max-height: 0;
+                    transition: $t-lg;
+
+                    li {
+                        margin-bottom: 5px;
+
+                        &:first-child {
+                            margin-top: 40px;
+                        }
+
+                        a {
+                            display: block;
+                            font-size: 12px;
+                            color: $lt-40;
+                            letter-spacing: 2px;
+                            font-weight: 500;
+                            text-transform: uppercase;
+
+                            &:before {
+                                display: none;
+                            }
+
+                            &:hover {
+                                color: $lt-80;
+                                transform: translateX(5px);
+                            }
+                        }
+                    }
+
+                    &.Jawad-active {
+                        max-height: 200px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        justify-content: center;
+
+        & ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            & li {
+                margin-bottom: 30px;
+
+                & a {
+                    justify-content: center;
+
+                    &:before {
+                        display: none;
+                    }
+
+                    &.Jawad-active {
+                        padding-left: 0 !important;
+                    }
+                }
+
+                &.Jawad-has-children {
+
+                    ul {
+                        padding-left: 0;
+
+                        & li {
+                            &:first-child {
+                                margin-top: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* -------------------------------------------
+
+banner
+
+------------------------------------------- */
+.Jawad-banner {
+    height: 100vh;
+
+    & .container {
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    & .Jawad-banner-content {
+        width: 100%;
+        padding-bottom: 120px;
+        position: relative;
+
+        @media screen and (max-width: 992px) {
+            padding-bottom: 90px;
+        }
+    }
+
+    & .Jawad-lines-place {
+        position: absolute;
+        left: 0;
+        bottom: calc(100% + 120px);
+    }
+}
+
+.Jawad-inner-banner {
+    & .Jawad-banner-content {
+        padding: 150px 0 0 0;
+
+        @media screen and (max-width: 1200px) {
+            padding: 180px 0 0 0;
+        }
+    }
+}
+
+.Jawad-banner-personal {
+    height: 100vh;
+    background-color: $dt-10;
+
+    & .Jawad-banner-content {
+        position: relative;
+        padding-top: 90px;
+
+        @media screen and (max-width: 992px) {
+            padding-top: 180px;
+        }
+
+        & .Jawad-personal-text {
+            margin-bottom: 300px;
+
+            @media screen and (max-width: 992px) {
+                margin-bottom: 80px;
+                text-align: center;
+            }
+        }
+
+        & .Jawad-banner-panel {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px 0 90px;
+            background-color: $light;
+            height: 180px;
+            position: absolute;
+            top: calc(100vh - 180px);
+            left: 0;
+            width: 100%;
+
+            @media screen and (max-width: 992px) {
+                flex-direction: column;
+                height: auto;
+                padding: 60px 30px;
+
+                & h5 {
+                    margin-bottom: 60px;
+                    text-align: center;
+                    width: 80%;
+                }
+            }
+
+            & .Jawad-right {
+                display: flex;
+
+                & .Jawad-social-frame {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: 30px;
+                    padding: 0 50px;
+                    background-color: $dt-10;
+                    height: 70px;
+                    border-radius: 70px;
+                    transition: $t-md;
+
+                    &:hover {
+                        transform: scale(1.015);
+                    }
+                }
+
+                @media screen and (max-width: 992px) {
+                    flex-direction: column;
+
+                    & .Jawad-social-frame {
+                        margin-right: 0;
+                        margin-bottom: 30px;
+                        height: 60px;
+                    }
+                }
+            }
+
+            & .Jawad-button {
+                margin: 0 !important;
+            }
+
+            @media screen and (max-width: 992px) {
+                bottom: 0;
+                top: auto;
+            }
+
+            @media screen and (max-width: 768px) {
+                position: static;
+                margin-bottom: 90px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        height: auto;
+    }
+}
+
+
+.Jawad-portrait-frame {
+    position: relative;
+
+    & img {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    & .Jawad-nimbus {
+        background: radial-gradient(50% 50% at 50% 50%, $accent 0%, rgba(250, 168, 69, 0) 100%);
+        width: 100%;
+        padding-bottom: 100%;
+        position: absolute;
+        opacity: .6;
+    }
+
+    @media screen and (max-width: 768px) {
+        height: 400px;
+
+        & img {
+            object-fit: cover;
+            object-position: top;
+        }
+    }
+}
+
+
+/* -------------------------------------------
+
+circle text
+
+------------------------------------------- */
+
+.Jawad-circle-text {
+    position: absolute;
+    right: 0;
+    bottom: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 140px;
+
+    & .Jawad-ct-svg {
+        transform: scale(2);
+        width: 140px;
+        height: 140px;
+
+        & text {
+            fill: $lt-40;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 500;
+            transition: $t-md;
+        }
+    }
+
+    & .Jawad-button {
+        position: absolute;
+    }
+
+    &:hover {
+        & svg {
+            & text {
+                fill: $light;
+            }
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        display: none;
+    }
+}
+
+/* -------------------------------------------
+
+lines
+
+------------------------------------------- */
+@mixin move-animation {
+    from {
+        transform: translateY(-75px);
+    }
+
+    50% {
+        transform: translateY(75px);
+    }
+
+    to {
+        transform: translateY(-75px);
+    }
+}
+
+@keyframes move {
+    @include move-animation;
+}
+
+.Jawad-lines-place {
+    & .Jawad-lines {
+        opacity: 0.05;
+        pointer-events: none;
+
+        @media screen and (max-width: 992px) {
+            display: none;
+        }
+
+        & path,
+        & rect,
+        & line {
+            stroke: $dark;
+        }
+
+        & .Jawad-move {
+            animation: move 10s linear infinite;
+        }
+    }
+
+    &.Jawad-light {
+        & .Jawad-lines {
+            opacity: .2;
+
+            & path,
+            & rect,
+            & line {
+                stroke: $light;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------
+
+dodecahedron
+
+------------------------------------------- */
+.Jawad-animation-frame {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    animation: jump 10s linear infinite;
+    pointer-events: none;
+}
+
+.Jawad-animation {
+    position: absolute;
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    opacity: .2;
+    pointer-events: none;
+}
+
+.Jawad-position-1 {
+    top: 100px;
+    right: 100px;
+
+    & .Jawad-pentagon {
+        & div {
+            border-top: .1px solid $light;
+        }
+    }
+}
+
+.Jawad-position-2 {
+    top: -60px;
+    left: 15%;
+
+    & .Jawad-pentagon {
+        & div {
+            border-top: 1px solid $light;
+        }
+    }
+
+    & .Jawad-dodecahedron {
+        animation-delay: .5s;
+    }
+
+    @media screen and (max-width: 1400px) {
+        display: none;
+    }
+}
+
+.Jawad-position-3 {
+    bottom: -100px;
+    right: 35%;
+
+    & .Jawad-pentagon {
+        & div {
+            border-top: 1px solid $light;
+        }
+    }
+
+    & .Jawad-dodecahedron {
+        animation-delay: 1s;
+    }
+
+    @media screen and (max-width: 1400px) {
+        display: none;
+    }
+}
+
+.Jawad-position-4 {
+    top: -60px;
+    right: 20%;
+
+    & .Jawad-pentagon {
+        & div {
+            border-top: .1px solid $light;
+        }
+    }
+
+    & .Jawad-dodecahedron {
+        animation-delay: .5s;
+    }
+
+    @media screen and (max-width: 1400px) {
+        display: none;
+    }
+
+    &.Jawad-dark {
+        & .Jawad-pentagon {
+            & div {
+                border-top: .1px solid $dark;
+            }
+        }
+    }
+}
+
+.Jawad-dodecahedron {
+    position: relative;
+    left: 100px;
+    top: 40px;
+    width: 100px;
+    height: 223px;
+    transform-style: preserve-3d;
+    animation: rotate 100s infinite linear;
+
+    @keyframes rotate {
+        from {
+            transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
+        }
+
+        to {
+            transform: rotateX(360deg) rotateY(0deg) rotateZ(-360deg);
+        }
+    }
+}
+
+.Jawad-pentagon {
+    position: absolute;
+    width: 100px;
+
+    @for $i from 1 through 5 {
+        &:nth-child(#{$i}) {
+            transform: rotateY(#{$i * 1/5}turn) translateZ(69px) rotateX(26.5deg);
+        }
+
+        &:nth-child(#{$i+5}) {
+            bottom: 0;
+            transform: rotateY(#{$i * 1/5}turn) translateZ(-69px) rotateX(206.5deg);
+        }
+    }
+
+    &:nth-child(11) {
+        transform: translateZ(69px) rotateX(-90deg);
+    }
+
+    &:nth-child(12) {
+        bottom: 0;
+        transform: translateZ(-69px) rotateX(90deg);
+    }
+
+    & div {
+        position: absolute;
+        width: 100px;
+        height: 69px;
+        transform-origin: bottom;
+
+        @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+                transform:rotate(#{$i * 1/5}turn)
+            }
+        }
+    }
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(-30px);
+    }
+
+    50% {
+        transform: translateY(30px);
+    }
+
+    100% {
+        transform: translateY(-30px);
+    }
+}
+
+/* -------------------------------------------
+
+about
+
+------------------------------------------- */
+
+.Jawad-about-quote {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & .Jawad-avatar {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        position: relative;
+
+        &:after {
+            content: ' " ';
+            color: $dark;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: $accent;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            display: flex;
+            padding-top: 12px;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        & img {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+    }
+
+    & .Jawad-quote {
+        padding-left: 30px;
+        width: calc(100% - 90px);
+    }
+
+    @media screen and (max-width: 992px) {
+        & .Jawad-avatar {
+            width: 70px;
+            height: 70px;
+
+            &:after {
+                padding-top: 7px;
+                width: 25px;
+                height: 25px;
+                font-size: 24px;
+            }
+        }
+
+        & .Jawad-quote {
+            font-size: 16px;
+            padding-left: 30px;
+            width: calc(100% - 70px);
+        }
+    }
+}
+
+.Jawad-about-photo {
+    position: relative;
+
+    & .Jawad-lines-place {
+        position: absolute;
+        top: -120px;
+        left: -27%;
+    }
+}
+
+/* -------------------------------------------
+
+partners
+
+------------------------------------------- */
+.Jawad-infinite-show {
+    & .swiper-wrapper {
+        transition-timing-function: linear;
+    }
+}
+
+.Jawad-partner-frame {
+    display: block;
+
+    & img {
+        width: 100%;
+    }
+}
+
+/* -------------------------------------------
+
+services
+
+------------------------------------------- */
+.Jawad-complex-text {
+    display: flex;
+    align-items: center;
+
+    & .Jawad-button {
+        margin-left: 30px;
+    }
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+
+        & .Jawad-button {
+            margin-left: 0;
+            margin-top: 60px;
+        }
+    }
+}
+
+.Jawad-text-image {
+    height: 80px;
+    width: 250px;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 70px;
+    margin-right: 30px;
+
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        transition: $t-md;
+    }
+
+    &:hover {
+        & img {
+            transform: scale(1.05);
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+}
+
+
+.Jawad-service-card-sm {
+    position: relative;
+    display: block;
+    padding: 60px 30px;
+
+    & p {
+        opacity: 0;
+        transform: translateY(10px);
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        transition: $t-md;
+    }
+
+    & .Jawad-button {
+        transform: scale(.3);
+        filter: grayscale(100%);
+        opacity: .4;
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 4px;
+        width: 0;
+        background-color: $accent;
+        transition: $t-lg;
+    }
+
+    &:hover {
+        & p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        & .Jawad-button {
+            transform: scale(1);
+            filter: grayscale(0);
+            opacity: 1;
+        }
+
+        &:before {
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        & p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        & .Jawad-button {
+            transform: scale(1);
+            filter: grayscale(0);
+            opacity: 1;
+        }
+    }
+}
+
+.Jawad-services-grid {
+    border-top: solid 1px $lt-10;
+
+    & .Jawad-services-grid-item {
+        border-right: solid 1px $lt-10;
+
+        &:first-child {
+            border-left: solid 1px $lt-10;
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        padding-bottom: 90px;
+
+        & .Jawad-services-grid-item {
+            border-bottom: solid 1px $lt-10;
+
+            &:nth-child(3) {
+                border-left: solid 1px $lt-10;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        padding-bottom: 90px;
+
+        & .Jawad-services-grid-item {
+            border-left: solid 1px $lt-10;
+            border-bottom: solid 1px $lt-10;
+        }
+    }
+}
+
+.Jawad-service-card-lg {
+    display: block;
+
+    & .Jawad-descr {
+        padding-right: 30px;
+    }
+
+    &.Jawad-offset {
+        margin-top: 60px;
+        margin-bottom: 60px;
+
+        @media screen and (max-width: 992px) {
+            margin-top: 0;
+        }
+    }
+
+    @media screen and (max-width: 992px) {
+        margin-bottom: 60px;
+    }
+
+    &.Jawad-other-card {
+        overflow: hidden;
+        position: relative;
+        border: solid 1px $gs-10;
+        padding: 60px;
+        transition: $t-md;
+
+        & .Jawad-descr {
+            padding-right: 0;
+        }
+
+        &:hover {
+            background-color: $accent;
+
+            & .Jawad-link {
+                & svg {
+                    background-color: $dark;
+
+                    & path {
+                        fill: $accent;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            padding: 30px;
+        }
+    }
+}
+
+.Jawad-service-list {
+    & li {
+        border-bottom: solid 1px $lt-10;
+        list-style-type: none;
+        padding: 15px 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 500;
+        font-size: 12px;
+
+        &:first-child {
+            border-top: solid 1px $lt-10;
+        }
+    }
+
+    &.Jawad-light {
+        & li {
+            color: $lt-60;
+        }
+    }
+
+    &.Jawad-dark {
+        & li {
+            border-bottom: solid 1px $dt-10;
+
+            &:first-child {
+                border-top: solid 1px $dt-10;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------
+
+team
+
+------------------------------------------- */
+
+.Jawad-team-card {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 130%;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        width: 0;
+        background-color: $accent;
+        transition: $t-lg;
+    }
+
+    & img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        transform: scale(1.05);
+        transition: $t-md;
+    }
+
+    &.Jawad-offset-card {
+        transform: translateY(60px);
+
+        @media screen and (max-width: 992px) {
+            transform: none;
+        }
+    }
+
+    & .Jawad-description {
+        opacity: 0;
+        text-align: center;
+        background-color: $dt-80;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 60px 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        pointer-events: none;
+        transition: $t-lg;
+
+        & .Jawad-secrc-text {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: $t-md;
+            transition-delay: 0s;
+
+            & a {
+                color: $light;
+                transition: $t-sm;
+
+                &:hover {
+                    color: $accent;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        & img {
+            transform: scale(1);
+        }
+
+        &:after {
+            width: 100%;
+        }
+
+        & .Jawad-description {
+            opacity: 1;
+            pointer-events: all;
+
+            & .Jawad-secrc-text {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: .1s;
+            }
+        }
+    }
+}
+
+.Jawad-team-list {
+    position: relative;
+
+    & .Jawad-lines-place {
+        position: absolute;
+        top: -120px;
+        left: -22.5%;
+    }
+}
+
+/* -------------------------------------------
+
+social icons
+
+------------------------------------------- */
+
+.Jawad-social-icons {
+    padding: 0;
+    margin: 0;
+    display: flex;
+
+    &.Jawad-center {
+        justify-content: center;
+    }
+
+    & li {
+        list-style-type: none;
+        margin-right: 15px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        & a {
+            color: $light;
+            font-size: 18px;
+            transition: $t-md;
+
+            &:hover {
+                color: $accent;
+            }
+        }
+    }
+
+    &.Jawad-dark {
+        & li {
+            & a {
+                color: $dark;
+
+                &:hover {
+                    color: $accent;
+                }
+            }
+        }
+    }
+}
+
+/* -------------------------------------------
+
+revievs
+
+------------------------------------------- */
+.Jawad-revi-pagination {
+    display: flex;
+    justify-content: center;
+
+    @media screen and (max-width: 992px) {
+        flex-wrap: wrap;
+    }
+
+    & .swiper-pagination-bullet {
+        padding: 0;
+        width: 110px;
+        height: 110px;
+        padding: 10px;
+        opacity: 1;
+        border: none;
+        background-color: transparent;
+        margin: 0 !important;
+        transition: $t-md !important;
+
+        @media screen and (max-width: 992px) {
+            width: 90px;
+            height: 90px;
+        }
+
+        &:nth-child(2n) {
+            margin-top: 30px !important;
+
+            @media screen and (max-width: 992px) {
+                margin-top: 0 !important;
+            }
+        }
+
+        &:hover {
+            box-shadow: inset 0 0 0 4px $light;
+        }
+
+        & .Jawad-custom-dot {
+            background-color: red;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: top;
+            transition: $t-md !important;
+
+            @media screen and (max-width: 992px) {
+                width: 70px;
+                height: 70px;
+            }
+
+
+            &.Jawad-slide-1 {
+                background-image: url(../img/faces/customers/1.jpg);
+            }
+
+            &.Jawad-slide-2 {
+                background-image: url(../img/faces/customers/2.jpg);
+            }
+
+            &.Jawad-slide-3 {
+                background-image: url(../img/faces/customers/3.jpg);
+            }
+
+            &.Jawad-slide-4 {
+                background-image: url(../img/faces/customers/4.jpg);
+            }
+
+            &.Jawad-slide-5 {
+                background-image: url(../img/faces/customers/5.jpg);
+            }
+
+            &.Jawad-slide-6 {
+                background-image: url(../img/faces/customers/6.jpg);
+            }
+
+            &.Jawad-slide-7 {
+                background-image: url(../img/faces/customers/7.jpg);
+            }
+        }
+
+        &.swiper-pagination-bullet-active {
+
+            box-shadow: inset 0 0 0 4px $accent;
+        }
+    }
+
+}
+
+.Jawad-quote-icon {
+    display: block;
+    margin: 0 auto;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+
+    & path {
+        fill: $accent;
+    }
+}
+
+
+.Jawad-slider-nav {
+    display: flex;
+
+    & .Jawad-slider-arrow {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        background-color: $dark;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: $t-md;
+
+        & svg {
+            & path {
+                fill: $accent;
+            }
+        }
+
+        &.Jawad-prev {
+            margin-right: 10px;
+            transform: rotate(180deg);
+        }
+
+        &.swiper-button-disabled {
+            opacity: .1;
+            cursor: not-allowed;
+        }
+
+        &:hover {
+            transform: scale(1.15);
+
+            &.Jawad-prev {
+                transform: rotate(180deg) scale(1.15);
+            }
+        }
+    }
+
+    &.Jawad-reviews-nav {
+        position: absolute;
+        top: 160px;
+        left: 0;
+        width: 100%;
+        justify-content: space-between;
+
+        @media screen and (max-width: 992px) {
+            top: 0;
+        }
+    }
+
+    &.Jawad-soft {
+        & .Jawad-slider-arrow {
+            background-color: $gs-10;
+
+            & svg {
+                & path {
+                    fill: $dark;
+                }
+            }
+        }
+    }
+}
+
+/* -------------------------------------------
+
+blog
+
+------------------------------------------- */
+
+.Jawad-blog-card {
+    display: block;
+
+    & .Jawad-cover-frame {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 65%;
+        margin-bottom: 30px;
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: $t-md;
+        }
+    }
+
+    & .Jawad-post-descr {
+        padding: 30px 30px 0 0;
+
+        & .Jawad-post-text {
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+
+    &:hover {
+        & .Jawad-cover-frame {
+            & img {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    &.Jawad-blog-card-hori {
+        padding-top: 60px;
+        border-top: solid 1px $gs-10;
+        display: flex;
+        align-items: center;
+
+        & .Jawad-cover-frame {
+            margin-bottom: 0;
+            width: 450px;
+            padding-bottom: 27%;
+        }
+
+        & .Jawad-post-descr {
+            width: calc(100% - 450px);
+            padding: 0;
+            padding-left: 60px;
+        }
+
+        @media screen and (max-width: 992px) {
+            display: block;
+            padding-top: 0;
+            border: none;
+
+            & .Jawad-cover-frame {
+                width: 100%;
+                padding-bottom: 65%;
+                margin-bottom: 30px;
+            }
+
+            & .Jawad-post-descr {
+                width: 100%;
+                padding: 30px 30px 0 0;
+            }
+        }
+    }
+}
+
+
+.Jawad-labels {
+    display: flex;
+    align-items: center;
+    padding: 0;
+
+    & .Jawad-label {
+        margin-right: 15px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+
+.Jawad-pagination {
+    padding-top: 60px;
+    border-top: solid 1px $dt-10;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.Jawad-pagination-btn {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 50%;
+    background-color: $dt-10;
+    color: $dark;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.Jawad-pagination-btn.Jawad-active {
+    background-color: $accent;
+}
+
+.Jawad-category-list {
+    display: flex;
+
+    & li {
+        list-style-type: none;
+        margin-right: 10px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        & a {
+            height: 40px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            padding: 0 20px;
+            border-radius: 40px;
+            color: $dark;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            transition: $t-md;
+
+            &:hover {
+                background-color: $gs-10;
+            }
+
+            &.Jawad-active {
+                background-color: $accent;
+            }
+
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+
+        & li {
+            margin-right: 0;
+            margin-bottom: 10px;
+            align-items: flex-start;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            & a {
+                justify-content: flex-start;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------
+
+footer
+
+------------------------------------------- */
+
+.Jawad-footer-menu {
+    margin-bottom: 120px;
+
+    & ul {
+        & li {
+            list-style-type: none;
+            margin-bottom: 30px;
+
+            & a {
+                display: block;
+                font-weight: 500;
+                font-size: $h4;
+                color: $lt-90;
+                transition: $t-md;
+
+                &:hover {
+                    transform: translateX(10px);
+                    color: $accent;
+                }
+
+                @media screen and (max-width: 768px) {
+                    font-size: $h4 - 6px;
+                }
+            }
+
+            &.Jawad-active {
+                & a {
+                    color: $accent;
+
+                    &:hover {
+                        transform: none;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        margin-bottom: 60px;
+    }
+}
+
+.Jawad-subscribe-form {
+    position: relative;
+    height: 70px;
+    width: 100%;
+
+    & input {
+        height: 100%;
+        width: 100%;
+        background-color: $lt-10;
+        color: $dark;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border: none;
+        border-radius: 70px;
+        padding: 0 0 0 50px;
+        transition: $t-md;
+
+        &::placeholder {
+            color: $gs-50;
+            font-faJawady: $font-1;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        &:focus {
+            background-color: $light;
+            outline: inherit;
+        }
+
+        &:hover {
+            background-color: $light;
+        }
+    }
+
+    & .Jawad-button {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    &.Jawad-subscribe-form-2 {
+        & input {
+            height: 100%;
+            width: 100%;
+            background-color: $dt-10;
+        }
+    }
+}
+
+/* -------------------------------------------
+
+portfolio
+
+------------------------------------------- */
+.Jawad-portfolio-item {
+    display: block;
+
+    & .Jawad-cover-frame {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 30px;
+
+        & .Jawad-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            & img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                transition: $t-md;
+            }
+        }
+
+        &.Jawad-vert {
+            padding-bottom: 130%;
+        }
+
+        &.Jawad-hori {
+            padding-bottom: 65%;
+        }
+    }
+
+    &:hover {
+        & .Jawad-cover-frame {
+            & .Jawad-cover {
+                & img {
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+
+    &.Jawad-slider-item {
+        & .Jawad-cover-frame {
+            margin-bottom: 30px;
+            height: calc(100vh - 360px);
+
+            @media screen and (max-width: 992px) {
+                height: auto;
+                padding-bottom: 100%;
+            }
+        }
+
+        & .Jawad-descr {
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 180px;
+            background-color: $gs-5;
+            padding: 0 60px;
+
+            @media screen and (max-width: 992px) {
+                padding: 30px;
+                flex-direction: column;
+                align-items: flex-start;
+                height: auto;
+
+                & .Jawad-descr-text {
+                    margin-bottom: 30px;
+                }
+            }
+        }
+
+        &:hover {
+            & .Jawad-cover-frame {
+                & .Jawad-cover {
+                    & img {
+                        transform: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.swiper-slide {
+    & .Jawad-portfolio-item {
+        & .Jawad-descr {
+            pointer-events: none;
+        }
+    }
+
+    &.swiper-slide-active {
+        & .Jawad-portfolio-item {
+            & .Jawad-descr {
+                pointer-events: all;
+            }
+        }
+    }
+}
+
+.Jawad-portfolio {
+    position: relative;
+
+    & .Jawad-lines-place {
+        position: absolute;
+        left: 40.7%;
+
+        &.Jawad-lines-long {
+            top: 1289px;
+        }
+    }
+}
+
+.Jawad-portfolio-slider-frame {
+    z-index: 0;
+    padding-top: 150px;
+
+    @media screen and (max-width: 992px) {
+        padding-top: 180px;
+    }
+}
+
+.Jawad-portfolio-nav {
+    background-color: $gs-5;
+    width: 100%;
+    padding: 0 60px;
+    height: 180px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & .Jawad-portfolio-btns-frame {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 15px;
+        height: 70px;
+        border-radius: 70px;
+        background-color: $light;
+    }
+
+    @media screen and (max-width: 992px) {
+        position: static;
+        height: auto;
+        padding: 30px 0 90px;
+        justify-content: flex-start;
+        background-color: $light;
+
+        & .Jawad-portfolio-btns-frame {
+            width: 100%;
+            height: auto;
+            padding: 0;
+        }
+    }
+}
+
+.swiper-portfolio-pagination {
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0 15px;
+}
+
+.Jawad-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 120px;
+    align-items: center;
+    border-bottom: solid 1px $dt-10;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 500;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        height: auto;
+        padding: 30px;
+    }
+}
+
+
+.Jawad-works-nav {
+    padding-top: 60px;
+    border-top: solid 1px $dt-10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & .Jawad-disabled {
+        opacity: .2;
+        cursor: not-allowed;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding-top: 0;
+        border-top: none;
+        justify-content: center;
+
+        & .Jawad-link {
+            display: none;
+
+            &:last-child {
+                display: flex;
+            }
+        }
+    }
+}
+
+/***************************
+
+map
+
+***************************/
+
+.Jawad-map-frame {
+    background-color: $gs-10;
+    pointer-events: all;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+
+    & .Jawad-map {
+        position: absolute;
+        top: -25%;
+        left: -25%;
+        width: 150%;
+        height: 150%;
+        transition: $t-md;
+
+        & iframe {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &:hover {
+        & .Jawad-map {}
+    }
+}
+
+/* -------------------------------------------
+
+accordion
+
+------------------------------------------- */
+
+.Jawad-accordion-group {
+    border-bottom: solid 1px $dt-20;
+    margin-bottom: 30px;
+
+    & .Jawad-accordion-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        margin-bottom: 30px;
+
+        & .Jawad-symbol {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: $dark;
+            background-color: $gs-10;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            & .Jawad-plus,
+            & .Jawad-minus {
+                position: absolute;
+            }
+
+            & .Jawad-minus {
+                transform: translateY(-2px);
+            }
+        }
+
+        & .Jawad-accordion-head {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: $dark;
+        }
+    }
+}
+
+.Jawad-accordion-content {
+    height: 0;
+    overflow: hidden;
+}
+
+
+/***************************
+
+price
+
+***************************/
+
+.Jawad-price-card {
+    display: block;
+    width: 100%;
+    border-top: solid 1px $lt-10;
+    border-bottom: solid 1px $lt-10;
+    padding: 60px 0 30px;
+
+    & .Jawad-price-number {
+        padding-top: 10px;
+        line-height: 70%;
+        font-size: $h2 - 14px;
+        font-weight: 500;
+
+        & .Jawad-thin {
+            font-weight: 200;
+            font-size: 18px;
+        }
+    }
+}
+
+
+/***************************
+
+404
+
+***************************/
+
+.Jawad-404-banner {
+    & .Jawad-animation-frame {
+        z-index: 2;
+    }
+}
+
+.Jawad-404-frame {
+    padding-top: 100px;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin glitchCopy {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.Jawad-404-text {
+    display: block;
+    text-align: center;
+    color: $light;
+}
+
+
+.Jawad-scale-frame {
+    transform: scale(2.3);
+    text-align: center;
+    margin-bottom: 90px;
+
+    @media screen and (max-width: 530px) {
+        transform: scale(1.3);
+        margin-bottom: 50px;
+    }
+}
+
+.Jawad-404 {
+    position: relative;
+    color: $light;
+    font-size: 6em;
+    font-weight: 500;
+    animation: glitch-skew 1s infinite linear alternate-reverse;
+
+    &::before {
+        @include glitchCopy;
+        left: 2px;
+        text-shadow: -2px 0 $accent;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+
+    &::after {
+        @include glitchCopy;
+        left: -2px;
+        text-shadow: -2px 0 $gs-40, 2px 2px $gs-10;
+        animation: glitch-anim2 1s infinite linear alternate-reverse;
+    }
+}
+
+@keyframes glitch-anim {
+    $steps: 20;
+
+    @for $i from 0 through $steps {
+        #{percentage($i*(1/$steps))} {
+            clip: rect(random(100)+px, 9999px, random(100)+px, 0);
+            transform: skew((random(100) / 100) + deg);
+        }
+    }
+}
+
+@keyframes glitch-anim2 {
+    $steps: 20;
+
+    @for $i from 0 through $steps {
+        #{percentage($i*(1/$steps))} {
+            clip: rect(random(100)+px, 9999px, random(100)+px, 0);
+            transform: skew((random(100) / 100) + deg);
+        }
+    }
+}
+
+@keyframes glitch-skew {
+    $steps: 10;
+
+    @for $i from 0 through $steps {
+        #{percentage($i*(1/$steps))} {
+            transform: skew((random(10) - 5) + deg);
+        }
+    }
+}
+
+/***************************
+
+images
+
+***************************/
+
+.Jawad-image-frame {
+    position: relative;
+    overflow: hidden;
+
+    & > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    &.Jawad-horizontal {
+        padding-bottom: 65%;
+    }
+
+    &.Jawad-vertical {
+        padding-bottom: 140%;
+    }
+
+    &.Jawad-square {
+        padding-bottom: 100%;
+    }
+
+    &.Jawad-fw {
+        padding-bottom: 50%;
+    }
+
+    & .Jawad-zoom-btn {
+        opacity: 0;
+        transform: translateY(15px);
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $lt-80;
+        transition: $t-md;
+
+        &:hover {
+            background-color: $light;
+        }
+
+        & img {
+            height: 17px;
+            width: 17px;
+        }
+    }
+
+    &:hover {
+        & .Jawad-zoom-btn {
+            opacity: 1;
+            transform: translateY(0);
+            z-index: 2;
+        }
+    }
+}
+
+/***************************
+
+page transitions
+
+***************************/
+.Jawad-frame {
+    opacity: 1;
+    transform: scale(1);
+    transition: .6s;
+}
+
+.Jawad-curtain {
+    position: fixed;
+    pointer-events: none;
+    z-index: 4;
+    background-color: $dark;
+    opacity: 0;
+    width: 100%;
+    height: 100vh;
+    transition: .6s;
+}
+
+.Jawad-main-transition {
+    transition: .6s;
+    margin-top: 0;
+    transition-delay: .3s;
+
+    & .Jawad-animation-frame {
+        opacity: 1;
+        margin-top: 0;
+        transition: .6s;
+        transition-delay: .3s;
+    }
+
+    & .Jawad-lines-place {
+        opacity: 1;
+        margin-top: 0;
+        transition: .6s;
+        transition-delay: .3s;
+    }
+}
+
+html.is-animating {
+    & .Jawad-frame {
+        opacity: 0;
+        transition-delay: .5s;
+        transform: scale(.9);
+
+        @media screen and (max-width: 1200px) {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    & .Jawad-curtain {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    & .Jawad-main-transition {
+        margin-top: .1px;
+
+        & .Jawad-animation-frame {
+            opacity: 0;
+            margin-top: -90px;
+            transition-delay: 0s;
+        }
+
+        & .Jawad-lines-place {
+            opacity: 0;
+            margin-top: 90px;
+            transition-delay: 0s;
+        }
+    }
+}
+
+html.is-animating {
+    & .Jawad-menu-frame {
+        opacity: 0;
+        transition-delay: .3s;
+    }
+}

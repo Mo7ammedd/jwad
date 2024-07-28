@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": "off",
+    "axe/name-role-value": [
+      "home-1.html",
+      {
+        "button-name": "off"
+      }
+    ]
+  }
+}
